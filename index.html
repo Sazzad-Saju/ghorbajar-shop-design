@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="bn" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GhorBazar — ঘরের দরকারি সব পণ্য</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Bengali:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        brand: { 50:'#F0F7F1', 100:'#D9EDDB', 200:'#B5DDB9', 300:'#7FC286', 400:'#4FA85A', 500:'#2D8C3E', 600:'#1B6B2E', 700:'#155724', 800:'#0F3D1B', 900:'#0A2812' },
+        navy: { 50:'#F0F3F9', 100:'#D9E0ED', 200:'#B3C1DB', 300:'#8DA2C9', 400:'#5A76AB', 500:'#3A5490', 600:'#1E293B', 700:'#172032', 800:'#111827', 900:'#0C1220' },
+        terra: { 50:'#FEF3EE', 100:'#FCE4D8', 200:'#F9C9B1', 300:'#F4A67A', 400:'#E87D45', 500:'#C75B39', 600:'#A84A2E', 700:'#8B3D26', 800:'#6E3120', 900:'#55281A' },
+        gold: { 50:'#FDF9EE', 100:'#FAF0D1', 200:'#F4DF9E', 300:'#EDCC6B', 400:'#D4A843', 500:'#B8902E', 600:'#977325', 700:'#76581E', 800:'#5A4318', 900:'#3F2F11' },
+        cream: { 50:'#FDFCFA', 100:'#FAF8F5', 200:'#F5F0EA', 300:'#EDE5DA', 400:'#E0D4C4' }
+      },
+      fontFamily: { sans:['Noto Sans Bengali','Inter','sans-serif'], en:['Inter','sans-serif'] }
+    }
+  }
+}
+</script>
+<style>
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:#FAF8F5}::-webkit-scrollbar-thumb{background:#C75B39;border-radius:3px}::-webkit-scrollbar-thumb:hover{background:#A84A2E}
+.page{display:none}.page.active{display:block}
+@keyframes fadeUp{0%{opacity:0;transform:translateY(24px)}100%{opacity:1;transform:translateY(0)}}
+@keyframes slideIn{0%{transform:translateX(100%)}100%{transform:translateX(0)}}
+@keyframes slideOut{0%{transform:translateX(0)}100%{transform:translateX(100%)}}
+@keyframes pulse-glow{0%,100%{box-shadow:0 0 0 0 rgba(199,91,57,0.4)}50%{box-shadow:0 0 0 12px rgba(199,91,57,0)}}
+.anim-up{animation:fadeUp .6s cubic-bezier(.16,1,.3,1) forwards;opacity:0}
+.delay-1{animation-delay:.1s}.delay-2{animation-delay:.2s}.delay-3{animation-delay:.3s}.delay-4{animation-delay:.4s}.delay-5{animation-delay:.5s}
+.pulse-cta{animation:pulse-glow 2s infinite}
+.product-card:hover .product-img{transform:scale(1.08)}
+.product-img{transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.hero-gradient{background:linear-gradient(135deg,#1B6B2E 0%,#155724 40%,#0F3D1B 100%)}
+.offer-gradient{background:linear-gradient(135deg,#C75B39 0%,#A84A2E 100%)}
+.trust-gradient{background:linear-gradient(135deg,#1E293B 0%,#172032 100%)}
+.nav-link{position:relative}.nav-link::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:2px;background:#C75B39;transition:width .3s}.nav-link:hover::after{width:100%}
+.toast{animation:fadeUp .4s ease forwards}
+input:focus,select:focus,textarea:focus{outline:none;box-shadow:0 0 0 3px rgba(27,107,46,0.2)}
+</style>
+</head>
+<body class="bg-cream-100 text-navy-600 font-sans antialiased">
+
+<!-- Toast Container -->
+<div id="toastContainer" class="fixed top-20 right-4 z-[100] flex flex-col gap-2"></div>
+
+<!-- ==================== HEADER ==================== -->
+<header id="mainHeader" class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-cream-300 transition-shadow duration-300">
+  <!-- Top Bar -->
+  <div class="bg-brand-600 text-white text-xs py-1.5">
+    <div class="max-w-7xl mx-auto px-4 flex items-center justify-between font-en">
+      <div class="flex items-center gap-4">
+        <span class="flex items-center gap-1"><iconify-icon icon="lucide:phone" width="12"></iconify-icon> 01700-000000</span>
+        <span class="hidden sm:flex items-center gap-1"><iconify-icon icon="lucide:truck" width="12"></iconify-icon> ক্যাশ অন ডেলিভারি সুবিধা</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="#" onclick="showPage('track')" class="hover:text-gold-300 transition-colors flex items-center gap-1"><iconify-icon icon="lucide:package-search" width="12"></iconify-icon> Track Order</a>
+      </div>
+    </div>
+  </div>
+  <!-- Main Nav -->
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+    <!-- Logo -->
+    <a href="#" onclick="showPage('home')" class="flex items-center gap-2 shrink-0">
+      <div class="w-9 h-9 bg-brand-600 rounded-lg flex items-center justify-center">
+        <iconify-icon icon="lucide:home" width="20" class="text-white"></iconify-icon>
+      </div>
+      <span class="text-xl font-bold text-brand-700 font-en tracking-tight">Ghor<span class="text-terra-500">Bazar</span></span>
+    </a>
+    <!-- Search -->
+    <div class="hidden md:flex flex-1 max-w-md mx-4">
+      <div class="relative w-full">
+        <input type="text" placeholder="পণ্য খুঁজুন..." class="w-full bg-cream-100 border border-cream-300 rounded-full py-2 pl-4 pr-10 text-sm focus:border-brand-500 transition-colors">
+        <button class="absolute right-1 top-1/2 -translate-y-1/2 bg-brand-600 text-white rounded-full p-1.5 hover:bg-brand-700 transition-colors">
+          <iconify-icon icon="lucide:search" width="16"></iconify-icon>
+        </button>
+      </div>
+    </div>
+    <!-- Nav Links Desktop -->
+    <nav class="hidden lg:flex items-center gap-6 font-en text-sm font-medium">
+      <a href="#" onclick="showPage('home')" class="nav-link text-navy-600 hover:text-brand-600 transition-colors">Home</a>
+      <a href="#" onclick="showPage('shop')" class="nav-link text-navy-600 hover:text-brand-600 transition-colors">Categories</a>
+      <a href="#" onclick="showPage('about')" class="nav-link text-navy-600 hover:text-brand-600 transition-colors">About</a>
+      <a href="#" onclick="showPage('contact')" class="nav-link text-navy-600 hover:text-brand-600 transition-colors">Contact</a>
+    </nav>
+    <!-- Cart & Mobile -->
+    <div class="flex items-center gap-3">
+      <button onclick="toggleCart()" class="relative p-2 hover:bg-cream-200 rounded-full transition-colors">
+        <iconify-icon icon="lucide:shopping-cart" width="22" class="text-navy-600"></iconify-icon>
+        <span id="cartCount" class="absolute -top-0.5 -right-0.5 bg-terra-500 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span>
+      </button>
+      <button onclick="toggleMobileMenu()" class="lg:hidden p-2 hover:bg-cream-200 rounded-full transition-colors">
+        <iconify-icon icon="lucide:menu" width="22" class="text-navy-600" id="menuIcon"></iconify-icon>
+      </button>
+    </div>
+  </div>
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="hidden lg:hidden border-t border-cream-300 bg-white">
+    <div class="px-4 py-3">
+      <div class="relative mb-3">
+        <input type="text" placeholder="পণ্য খুঁজুন..." class="w-full bg-cream-100 border border-cream-300 rounded-full py-2 pl-4 pr-10 text-sm">
+        <button class="absolute right-1 top-1/2 -translate-y-1/2 bg-brand-600 text-white rounded-full p-1.5"><iconify-icon icon="lucide:search" width="16"></iconify-icon></button>
+      </div>
+      <nav class="flex flex-col gap-1 font-en">
+        <a href="#" onclick="showPage('home');toggleMobileMenu()" class="py-2.5 px-3 rounded-lg hover:bg-brand-50 text-navy-600 hover:text-brand-700 transition-colors font-medium">Home</a>
+        <a href="#" onclick="showPage('shop');toggleMobileMenu()" class="py-2.5 px-3 rounded-lg hover:bg-brand-50 text-navy-600 hover:text-brand-700 transition-colors font-medium">Categories</a>
+        <a href="#" onclick="showPage('about');toggleMobileMenu()" class="py-2.5 px-3 rounded-lg hover:bg-brand-50 text-navy-600 hover:text-brand-700 transition-colors font-medium">About</a>
+        <a href="#" onclick="showPage('contact');toggleMobileMenu()" class="py-2.5 px-3 rounded-lg hover:bg-brand-50 text-navy-600 hover:text-brand-700 transition-colors font-medium">Contact</a>
+        <a href="#" onclick="showPage('track');toggleMobileMenu()" class="py-2.5 px-3 rounded-lg hover:bg-brand-50 text-navy-600 hover:text-brand-700 transition-colors font-medium flex items-center gap-2"><iconify-icon icon="lucide:package-search" width="16"></iconify-icon> Track Order</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<!-- ==================== CART SIDEBAR ==================== -->
+<div id="cartOverlay" class="fixed inset-0 bg-black/40 z-[60] hidden" onclick="toggleCart()"></div>
+<div id="cartSidebar" class="fixed top-0 right-0 bottom-0 w-full max-w-md bg-white z-[70] shadow-2xl translate-x-full transition-transform duration-300 flex flex-col">
+  <div class="p-4 border-b border-cream-300 flex items-center justify-between">
+    <h3 class="text-lg font-bold">কার্ট <span id="cartItemCount" class="text-sm font-normal text-navy-400">(০টি পণ্য)</span></h3>
+    <button onclick="toggleCart()" class="p-2 hover:bg-cream-200 rounded-full transition-colors"><iconify-icon icon="lucide:x" width="20"></iconify-icon></button>
+  </div>
+  <div id="cartItems" class="flex-1 overflow-y-auto p-4">
+    <div id="emptyCart" class="flex flex-col items-center justify-center h-full text-center py-10">
+      <iconify-icon icon="lucide:shopping-cart" width="48" class="text-cream-400 mb-3"></iconify-icon>
+      <p class="text-navy-400">আপনার কার্টে কোনো পণ্য নেই</p>
+    </div>
+    <div id="cartItemsList" class="space-y-3"></div>
+  </div>
+  <div id="cartFooter" class="hidden border-t border-cream-300 p-4 bg-cream-50">
+    <div class="flex justify-between mb-2 text-sm"><span class="text-navy-400">পণ্যের মূল্য</span><span id="cartSubtotal" class="font-medium">৳০</span></div>
+    <div class="flex justify-between mb-3 text-sm"><span class="text-navy-400">ডেলিভারি চার্জ</span><span class="font-medium text-brand-600">চেকআউটে দেখুন</span></div>
+    <div class="flex justify-between mb-4 text-lg font-bold"><span>মোট</span><span id="cartTotal" class="text-terra-500">৳০</span></div>
+    <button onclick="showPage('checkout');toggleCart()" class="w-full bg-terra-500 hover:bg-terra-600 text-white py-3 rounded-xl font-bold text-sm transition-colors pulse-cta">অর্ডার কনফার্ম করুন →</button>
+  </div>
+</div>
+
+<!-- ==================== PAGES ==================== -->
+<main class="pt-[88px]">
+
+<!-- ======== HOME PAGE ======== -->
+<div id="page-home" class="page active">
+  <!-- Hero -->
+  <section class="hero-gradient relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-10 left-10 w-72 h-72 bg-gold-400 rounded-full blur-[100px]"></div>
+      <div class="absolute bottom-10 right-10 w-96 h-96 bg-brand-300 rounded-full blur-[120px]"></div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 py-16 md:py-24 relative z-10">
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+        <div class="text-white">
+          <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 text-xs mb-6 anim-up">
+            <iconify-icon icon="lucide:sparkles" width="14" class="text-gold-300"></iconify-icon>
+            <span class="text-gold-200">নতুন কালেকশন এসেছে!</span>
+          </div>
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-5 anim-up delay-1">
+            আপনার ঘরের<br>দরকারি সব<br><span class="text-gold-300">এক জায়গায়</span>
+          </h1>
+          <p class="text-white/80 text-lg mb-8 max-w-md anim-up delay-2">বাসাবাড়ির প্রয়োজনীয় পণ্য, ইলেকট্রনিক্স, গ্যাজেট ও কিচেন আইটেম — সেরা দামে, ঘরে বসেই অর্ডার করুন।</p>
+          <div class="flex flex-wrap gap-3 anim-up delay-3">
+            <button onclick="showPage('shop')" class="bg-terra-500 hover:bg-terra-600 text-white px-8 py-3.5 rounded-xl font-bold text-sm transition-all hover:-translate-y-0.5 pulse-cta">এখনই অর্ডার করুন</button>
+            <button onclick="document.getElementById('offersSection').scrollIntoView({behavior:'smooth'})" class="bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 text-white px-8 py-3.5 rounded-xl font-bold text-sm transition-all">সেরা অফার দেখুন</button>
+          </div>
+          <div class="flex items-center gap-6 mt-8 text-white/70 text-xs font-en anim-up delay-4">
+            <span class="flex items-center gap-1.5"><iconify-icon icon="lucide:shield-check" width="14" class="text-brand-300"></iconify-icon> Quality Checked</span>
+            <span class="flex items-center gap-1.5"><iconify-icon icon="lucide:truck" width="14" class="text-brand-300"></iconify-icon> Fast Delivery</span>
+            <span class="flex items-center gap-1.5"><iconify-icon icon="lucide:banknote" width="14" class="text-brand-300"></iconify-icon> Cash on Delivery</span>
+          </div>
+        </div>
+        <div class="relative hidden md:block anim-up delay-3">
+          <div class="relative z-10 rounded-3xl overflow-hidden shadow-2xl">
+            <img src="https://picsum.photos/seed/bdhome-hero/600/500.jpg" alt="Hero" class="w-full object-cover aspect-[6/5]">
+            <div class="absolute inset-0 bg-gradient-to-t from-brand-900/40 to-transparent"></div>
+          </div>
+          <div class="absolute -bottom-4 -left-4 bg-white rounded-2xl p-4 shadow-xl z-20 anim-up delay-5">
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 bg-terra-50 rounded-xl flex items-center justify-center"><iconify-icon icon="lucide:percent" width="24" class="text-terra-500"></iconify-icon></div>
+              <div><p class="text-xs text-navy-400">আজকের ডিসকাউন্ট</p><p class="text-xl font-bold text-terra-500">৩০% পর্যন্ত</p></div>
+            </div>
+          </div>
+          <div class="absolute -top-3 -right-3 bg-white rounded-2xl p-3 shadow-xl z-20 anim-up delay-5">
+            <div class="flex items-center gap-2">
+              <div class="flex -space-x-2">
+                <img src="https://picsum.photos/seed/avatar1/32/32.jpg" class="w-7 h-7 rounded-full border-2 border-white">
+                <img src="https://picsum.photos/seed/avatar2/32/32.jpg" class="w-7 h-7 rounded-full border-2 border-white">
+                <img src="https://picsum.photos/seed/avatar3/32/32.jpg" class="w-7 h-7 rounded-full border-2 border-white">
+              </div>
+              <div><p class="text-xs font-bold">৫০০০+</p><p class="text-[10px] text-navy-400">সন্তুষ্ট গ্রাহক</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section class="max-w-7xl mx-auto px-4 py-16">
+    <div class="text-center mb-10">
+      <h2 class="text-2xl md:text-3xl font-bold mb-2">ক্যাটাগরি অনুযায়ী দেখুন</h2>
+      <p class="text-navy-400">আপনার প্রয়োজন অনুযায়ী পণ্য বেছে নিন</p>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3">
+      <button onclick="showPage('shop')" class="group bg-white border border-cream-300 rounded-2xl p-4 text-center hover:border-brand-400 hover:shadow-lg transition-all hover:-translate-y-1">
+        <div class="w-14 h-14 mx-auto bg-brand-50 rounded-xl flex items-center justify-center mb-3 group-hover:bg-brand-100 transition-colors"><iconify-icon icon="lucide:home" width="26" class="text-brand-600"></iconify-icon></div>
+        <span class="text-sm font-medium">Home Essentials</span>
+      </button>
+      <button onclick="showPage('shop')" class="group bg-white border border-cream-300 rounded-2xl p-4 text-center hover:border-brand-400 hover:shadow-lg transition-all hover:-translate-y-1">
+        <div class="w-14 h-14 mx-auto bg-blue-50 rounded-xl flex items-center justify-center mb-3 group-hover:bg-blue-100 transition-colors"><iconify-icon icon="lucide:cpu" width="26" class="text-blue-600"></iconify-icon></div>
+        <span class="text-sm font-medium">Electronics</span>
+      </button>
+      <button onclick="showPage('shop')" class="group bg-white border border-cream-300 rounded-2xl p-4 text-center hover:border-brand-400 hover:shadow-lg transition-all hover:-translate-y-1">
+        <div class="w-14 h-14 mx-auto bg-purple-50 rounded-xl flex items-center justify-center mb-3 group-hover:bg-purple-100 transition-colors"><iconify-icon icon="lucide:smartphone" width="26" class="text-purple-600"></iconify-icon></div>
+        <span class="text-sm font-medium">Gadgets</span>
+      </button>
+      <button onclick="showPage('shop')" class="group bg-white border border-cream-300 rounded-2xl p-4 text-center hover:border-brand-400 hover:shadow-lg transition-all hover:-translate-y-1">
+        <div class="w-14 h-14 mx-auto bg-orange-50 rounded-xl flex items-center justify-center mb-3 group-hover:bg-orange-100 transition-colors"><iconify-icon icon="lucide:chef-hat" width="26" class="text-orange-600"></iconify-icon></div>
+        <span class="text-sm font-medium">Kitchen Items</span>
+      </button>
+      <button onclick="showPage('shop')" class="group bg-white border border-cream-300 rounded-2xl p-4 text-center hover:border-brand-400 hover:shadow-lg transition-all hover:-translate-y-1">
+        <div class="w-14 h-14 mx-auto bg-pink-50 rounded-xl flex items-center justify-center mb-3 group-hover:bg-pink-100 transition-colors"><iconify-icon icon="lucide:heart" width="26" class="text-pink-600"></iconify-icon></div>
+        <span class="text-sm font-medium">Personal Care</span>
+      </button>
+      <button onclick="showPage('shop')" class="group bg-white border border-cream-300 rounded-2xl p-4 text-center hover:border-brand-400 hover:shadow-lg transition-all hover:-translate-y-1">
+        <div class="w-14 h-14 mx-auto bg-yellow-50 rounded-xl flex items-center justify-center mb-3 group-hover:bg-yellow-100 transition-colors"><iconify-icon icon="lucide:lamp-desk" width="26" class="text-yellow-600"></iconify-icon></div>
+        <span class="text-sm font-medium">Lighting</span>
+      </button>
+      <button onclick="showPage('shop')" class="group bg-white border border-cream-300 rounded-2xl p-4 text-center hover:border-brand-400 hover:shadow-lg transition-all hover:-translate-y-1">
+        <div class="w-14 h-14 mx-auto bg-teal-50 rounded-xl flex items-center justify-center mb-3 group-hover:bg-teal-100 transition-colors"><iconify-icon icon="lucide:cable" width="26" class="text-teal-600"></iconify-icon></div>
+        <span class="text-sm font-medium">Accessories</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Top Selling Products -->
+  <section class="bg-white py-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex items-end justify-between mb-10">
+        <div>
+          <h2 class="text-2xl md:text-3xl font-bold mb-2">সর্বাধিক বিক্রিত পণ্য</h2>
+          <p class="text-navy-400">গ্রাহকদের সবচেয়ে পছন্দের পণ্যসমূহ</p>
+        </div>
+        <button onclick="showPage('shop')" class="hidden sm:flex items-center gap-1 text-terra-500 hover:text-terra-600 font-medium text-sm transition-colors">সব দেখুন <iconify-icon icon="lucide:arrow-right" width="16"></iconify-icon></button>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="topProducts"></div>
+      <div class="mt-8 text-center sm:hidden">
+        <button onclick="showPage('shop')" class="text-terra-500 hover:text-terra-600 font-medium text-sm flex items-center gap-1 mx-auto">সব দেখুন <iconify-icon icon="lucide:arrow-right" width="16"></iconify-icon></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Offer Strip -->
+  <section id="offersSection" class="offer-gradient py-10">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid md:grid-cols-3 gap-4">
+        <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-white text-center">
+          <iconify-icon icon="lucide:timer" width="32" class="text-gold-300 mb-3"></iconify-icon>
+          <h3 class="text-lg font-bold mb-1">সীমিত সময়ের অফার</h3>
+          <p class="text-white/70 text-sm">নির্বাচিত পণ্যে ৩০% পর্যন্ত ছাড়!</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-white text-center">
+          <iconify-icon icon="lucide:truck" width="32" class="text-gold-300 mb-3"></iconify-icon>
+          <h3 class="text-lg font-bold mb-1">ঢাকার ভিতরে দ্রুত ডেলিভারি</h3>
+          <p class="text-white/70 text-sm">অর্ডারের ২৪-৪৮ ঘণ্টায় পৌঁছে যাবে</p>
+        </div>
+        <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 text-white text-center">
+          <iconify-icon icon="lucide:banknote" width="32" class="text-gold-300 mb-3"></iconify-icon>
+          <h3 class="text-lg font-bold mb-1">ক্যাশ অন ডেলিভারি</h3>
+          <p class="text-white/70 text-sm">পণ্য হাতে পেয়ে টাকা দিন, কোনো ঝামেলা নেই</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scenario Products -->
+  <section class="max-w-7xl mx-auto px-4 py-16">
+    <div class="text-center mb-10">
+      <h2 class="text-2xl md:text-3xl font-bold mb-2">আপনার প্রয়োজন অনুযায়ী</h2>
+      <p class="text-navy-400">ব্যবহারের ধরন অনুযায়ী পণ্য খুঁজুন</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-4">
+      <button onclick="showPage('shop')" class="group relative rounded-2xl overflow-hidden aspect-[2/1]">
+        <img src="https://picsum.photos/seed/bd-home-items/600/300.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+        <div class="absolute inset-0 bg-gradient-to-r from-navy-600/80 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 p-6 text-white">
+          <h3 class="text-xl font-bold mb-1">ঘরের জন্য দরকারি পণ্য</h3>
+          <p class="text-white/70 text-sm">ফ্যান, ল্যাম্প, স্টোরেজ ও আরও অনেক কিছু</p>
+        </div>
+      </button>
+      <button onclick="showPage('shop')" class="group relative rounded-2xl overflow-hidden aspect-[2/1]">
+        <img src="https://picsum.photos/seed/bd-kitchen-items/600/300.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+        <div class="absolute inset-0 bg-gradient-to-r from-navy-600/80 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 p-6 text-white">
+          <h3 class="text-xl font-bold mb-1">রান্নাঘরের প্রয়োজনীয় সামগ্রী</h3>
+          <p class="text-white/70 text-sm">কিচেন টুল, কন্টেইনার ও গ্যাজেট</p>
+        </div>
+      </button>
+      <button onclick="showPage('shop')" class="group relative rounded-2xl overflow-hidden aspect-[2/1]">
+        <img src="https://picsum.photos/seed/bd-gadgets-daily/600/300.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+        <div class="absolute inset-0 bg-gradient-to-r from-navy-600/80 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 p-6 text-white">
+          <h3 class="text-xl font-bold mb-1">দৈনন্দিন গ্যাজেট</h3>
+          <p class="text-white/70 text-sm">স্মার্টওয়াচ, ইয়ারবাড, ক্যাবল ও আরও</p>
+        </div>
+      </button>
+      <button onclick="showPage('shop')" class="group relative rounded-2xl overflow-hidden aspect-[2/1]">
+        <img src="https://picsum.photos/seed/bd-gift-items/600/300.jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+        <div class="absolute inset-0 bg-gradient-to-r from-navy-600/80 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 p-6 text-white">
+          <h3 class="text-xl font-bold mb-1">উপহারের জন্য উপযোগী পণ্য</h3>
+          <p class="text-white/70 text-sm">সুন্দর ও কাজের পণ্য — প্রিয়জনকে উপহার দিন</p>
+        </div>
+      </button>
+    </div>
+  </section>
+
+  <!-- Trust Section -->
+  <section class="trust-gradient py-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-10">
+        <h2 class="text-2xl md:text-3xl font-bold mb-2 text-white">কেন আমাদের বিশ্বাস করবেন?</h2>
+        <p class="text-white/60">আমরা আপনার বিশ্বাস ও সন্তুষ্টিকে সবচেয়ে গুরুত্ব দিই</p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+        <div class="text-center p-4">
+          <div class="w-16 h-16 mx-auto bg-brand-500/20 rounded-2xl flex items-center justify-center mb-3"><iconify-icon icon="lucide:banknote" width="28" class="text-brand-300"></iconify-icon></div>
+          <h4 class="text-white font-medium text-sm mb-1">ক্যাশ অন ডেলিভারি</h4>
+          <p class="text-white/50 text-xs">পণ্য হাতে পেয়ে টাকা দিন</p>
+        </div>
+        <div class="text-center p-4">
+          <div class="w-16 h-16 mx-auto bg-blue-500/20 rounded-2xl flex items-center justify-center mb-3"><iconify-icon icon="lucide:truck" width="28" class="text-blue-300"></iconify-icon></div>
+          <h4 class="text-white font-medium text-sm mb-1">দ্রুত ডেলিভারি</h4>
+          <p class="text-white/50 text-xs">ঢাকায় ২৪-৪৮ ঘণ্টা</p>
+        </div>
+        <div class="text-center p-4">
+          <div class="w-16 h-16 mx-auto bg-gold-400/20 rounded-2xl flex items-center justify-center mb-3"><iconify-icon icon="lucide:shield-check" width="28" class="text-gold-300"></iconify-icon></div>
+          <h4 class="text-white font-medium text-sm mb-1">মানসম্মত পণ্য</h4>
+          <p class="text-white/50 text-xs">প্রতিটি পণ্য যাচাই করা</p>
+        </div>
+        <div class="text-center p-4">
+          <div class="w-16 h-16 mx-auto bg-purple-500/20 rounded-2xl flex items-center justify-center mb-3"><iconify-icon icon="lucide:headset" width="28" class="text-purple-300"></iconify-icon></div>
+          <h4 class="text-white font-medium text-sm mb-1">কাস্টমার সাপোর্ট</h4>
+          <p class="text-white/50 text-xs">সর্বদা আপনার পাশে</p>
+        </div>
+        <div class="text-center p-4 col-span-2 md:col-span-1">
+          <div class="w-16 h-16 mx-auto bg-terra-500/20 rounded-2xl flex items-center justify-center mb-3"><iconify-icon icon="lucide:mouse-pointer-click" width="28" class="text-terra-300"></iconify-icon></div>
+          <h4 class="text-white font-medium text-sm mb-1">সহজ অর্ডার</h4>
+          <p class="text-white/50 text-xs">কয়েক ক্লিকেই অর্ডার</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="max-w-7xl mx-auto px-4 py-16">
+    <div class="grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <h2 class="text-2xl md:text-3xl font-bold mb-6">কেন GhorBazar বেছে নেবেন?</h2>
+        <div class="space-y-5">
+          <div class="flex gap-4"><div class="w-10 h-10 bg-brand-50 rounded-xl flex items-center justify-center shrink-0"><iconify-icon icon="lucide:piggy-bank" width="20" class="text-brand-600"></iconify-icon></div><div><h4 class="font-semibold mb-0.5">সাশ্রয়ী দাম</h4><p class="text-sm text-navy-400">বাজারের চেয়ে সেরা দামে পণ্য পান, কোনো লুকানো খরচ নেই</p></div></div>
+          <div class="flex gap-4"><div class="w-10 h-10 bg-gold-50 rounded-xl flex items-center justify-center shrink-0"><iconify-icon icon="lucide:award" width="20" class="text-gold-500"></iconify-icon></div><div><h4 class="font-semibold mb-0.5">মানসম্মত পণ্য</h4><p class="text-sm text-navy-400">প্রতিটি পণ্য মান যাচাইয়ের পর পৌঁছায় আপনার হাতে</p></div></div>
+          <div class="flex gap-4"><div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center shrink-0"><iconify-icon icon="lucide:zap" width="20" class="text-blue-600"></iconify-icon></div><div><h4 class="font-semibold mb-0.5">দ্রুত ডেলিভারি</h4><p class="text-sm text-navy-400">ঢাকার ভিতরে ১-২ দিন, ঢাকার বাইরে ৩-৫ দিনে ডেলিভারি</p></div></div>
+          <div class="flex gap-4"><div class="w-10 h-10 bg-terra-50 rounded-xl flex items-center justify-center shrink-0"><iconify-icon icon="lucide:click" width="20" class="text-terra-500"></iconify-icon></div><div><h4 class="font-semibold mb-0.5">সহজ অর্ডার প্রক্রিয়া</h4><p class="text-sm text-navy-400">মাত্র কয়েকটি ধাপে অর্ডার করুন, অ্যাকাউন্ট লাগবে না</p></div></div>
+          <div class="flex gap-4"><div class="w-10 h-10 bg-purple-50 rounded-xl flex items-center justify-center shrink-0"><iconify-icon icon="lucide:heart-handshake" width="20" class="text-purple-600"></iconify-icon></div><div><h4 class="font-semibold mb-0.5">বিশ্বস্ত কাস্টমার সাপোর্ট</h4><p class="text-sm text-navy-400">যেকোনো সমস্যায় আমরা আছি আপনার পাশে — ফোনে বা মেসেজে</p></div></div>
+        </div>
+      </div>
+      <div class="relative">
+        <img src="https://picsum.photos/seed/bd-why-choose/500/600.jpg" class="rounded-3xl w-full object-cover aspect-[5/6] shadow-xl">
+        <div class="absolute -bottom-4 -left-4 bg-white rounded-2xl p-4 shadow-xl">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 bg-brand-50 rounded-xl flex items-center justify-center"><iconify-icon icon="lucide:star" width="24" class="text-gold-400"></iconify-icon></div>
+            <div><p class="text-xl font-bold text-brand-700">৪.৮/৫</p><p class="text-xs text-navy-400">গ্রাহক রেটিং</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Customer Reviews -->
+  <section class="bg-cream-200 py-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-10">
+        <h2 class="text-2xl md:text-3xl font-bold mb-2">গ্রাহকদের মতামত</h2>
+        <p class="text-navy-400">আমাদের সম্মানিত গ্রাহকদের অভিজ্ঞতা</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-4">
+        <div class="bg-white rounded-2xl p-6 border border-cream-300">
+          <div class="flex gap-0.5 mb-3"><iconify-icon icon="lucide:star" width="16" class="text-gold-400"></iconify-icon><iconify-icon icon="lucide:star" width="16" class="text-gold-400"></iconify-icon><iconify-icon icon="lucide:star" width="16" class="text-gold-400"></iconify-icon><iconify-icon icon="lucide:star" width="16" class="text-gold-400"></iconify-icon><iconify-icon icon="lucide:star" width="16" class="text-gold-400"></iconify-icon></div>
+          <p class="text-sm mb-4">"টেবিল ল্যাম্পটা নিয়েছিলাম, খুবই সুন্দর আর কাজের। প্যাকেজিংও ভালো ছিল। ডেলিভারি ঢাকায় ২ দিনে পেয়েছি।"</p>
+          <div class="flex items-center gap-3"><img src="https://picsum.photos/seed/review1/40/40.jpg" class="w-9 h-9 rounded-full"><div><p class="text-sm font-medium">ফারহানা আক্তার</p><p class="text-xs text-navy-400">LED টেবিল ল্যাম্প কিনেছেন</p></div></div>
+        </div>
+        <div class="bg-white rounded-2xl p-6 border border-cream-300">
+          <div class="flex gap-0.5 mb-3"><iconify-icon icon="lucide:star" width="16" class="text-gold-400"></iconify-icon><iconify-icon icon="lucide:star" width="16" class="text-gold-400"></iconify-icon><iconify-icon icon="lucide:star" width="16" class="text-gold-400"></iconify-icon><iconify-icon icon="lucide:star" width="16" class="text-gold-400"></iconify-icon><iconify-icon icon="lucide:star" width="16" class="text-gold-400"></iconify-icon></div>
+          <p class="text-sm mb-4">"স্মার্টওয়াচ অরিজিনাল পেয়েছি, দাম বাজারের চেয়ে অনেক কম। ক্যাশ অন ডেলিভারিতে অর্ডার করেছিলাম, কোনো সমস্যা হয়নি।"</p>
+          <div class="flex items-center gap-3"><img src="https://picsum.photos/seed/review2/40/40.jpg" class="w-9 h-9 rounded-full"><div><p class="text-sm font-medium">রাকিব হাসান</p><p class="text-xs text-navy-400">স্মার্টওয়াচ কিনেছেন</p></div></div>
+        </div>
+        <div class="bg-white rounded-2xl p-6 border border-cream-300">
+          <div class="flex gap-0.5 mb-3"><iconify-icon icon="lucide:star" width="16" class="text-gold-400"></iconify-icon><iconify-icon icon="lucide:star" width="16" class="text-gold-400"></iconify-icon><iconify-icon icon="lucide:star" width="16" class="text-gold-400"></iconify-icon><iconify-icon icon="lucide:star" width="16" class="text-gold-400"></iconify-icon><iconify-icon icon="lucide:star" width="16" class="text-navy-200"></iconify-icon></div>
+          <p class="text-sm mb-4">"কিচেনের কন্টেইনার সেট নিয়েছি, কোয়ালিটি ভালো। একটু ডেলিভারি দেরি হলেও পণ্য ঠিক পেয়েছি। আবার অর্ডার করব!"</p>
+          <div class="flex items-center gap-3"><img src="https://picsum.photos/seed/review3/40/40.jpg" class="w-9 h-9 rounded-full"><div><p class="text-sm font-medium">নাসরিন সুলতানা</p><p class="text-xs text-navy-400">কিচেন কন্টেইনার সেট কিনেছেন</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="max-w-7xl mx-auto px-4 py-20">
+    <div class="bg-brand-700 rounded-3xl p-8 md:p-14 text-center relative overflow-hidden">
+      <div class="absolute inset-0 opacity-10"><div class="absolute top-0 right-0 w-64 h-64 bg-gold-400 rounded-full blur-[80px]"></div></div>
+      <div class="relative z-10">
+        <h2 class="text-2xl md:text-4xl font-bold text-white mb-4">আপনার প্রয়োজনীয় পণ্য এখনই অর্ডার করুন</h2>
+        <p class="text-white/70 mb-8 max-w-xl mx-auto">দ্রুত ডেলিভারি, সহজ অর্ডার, বিশ্বস্ত সেবা — সবকিছু এক জায়গায়</p>
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+          <button onclick="showPage('shop')" class="bg-terra-500 hover:bg-terra-600 text-white px-10 py-4 rounded-xl font-bold transition-all hover:-translate-y-0.5 pulse-cta">এখনই অর্ডার করুন</button>
+          <a href="tel:01700000000" class="bg-white/10 hover:bg-white/20 border border-white/20 text-white px-10 py-4 rounded-xl font-bold transition-all inline-flex items-center justify-center gap-2"><iconify-icon icon="lucide:phone" width="18"></iconify-icon> কল করুন</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ======== SHOP PAGE ======== -->
+<div id="page-shop" class="page">
+  <section class="max-w-7xl mx-auto px-4 py-8">
+    <div class="flex items-center gap-2 text-sm text-navy-400 mb-6 font-en">
+      <a href="#" onclick="showPage('home')" class="hover:text-brand-600 transition-colors">Home</a>
+      <iconify-icon icon="lucide:chevron-right" width="14"></iconify-icon>
+      <span class="text-navy-600">Categories</span>
+    </div>
+    <div class="flex flex-col md:flex-row gap-6">
+      <!-- Sidebar Filters -->
+      <aside class="md:w-64 shrink-0">
+        <div class="bg-white rounded-2xl border border-cream-300 p-5 sticky top-28">
+          <h3 class="font-bold mb-4">ফিল্টার</h3>
+          <div class="mb-5">
+            <h4 class="text-sm font-semibold mb-2">ক্যাটাগরি</h4>
+            <div class="space-y-2 text-sm">
+              <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" checked class="w-4 h-4 rounded border-cream-400 text-brand-600 focus:ring-brand-500"> Home Essentials</label>
+              <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="w-4 h-4 rounded border-cream-400 text-brand-600 focus:ring-brand-500"> Electronics</label>
+              <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="w-4 h-4 rounded border-cream-400 text-brand-600 focus:ring-brand-500"> Gadgets</label>
+              <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="w-4 h-4 rounded border-cream-400 text-brand-600 focus:ring-brand-500"> Kitchen Items</label>
+              <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="w-4 h-4 rounded border-cream-400 text-brand-600 focus:ring-brand-500"> Personal Care</label>
+              <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="w-4 h-4 rounded border-cream-400 text-brand-600 focus:ring-brand-500"> Lighting</label>
+              <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="w-4 h-4 rounded border-cream-400 text-brand-600 focus:ring-brand-500"> Accessories</label>
+            </div>
+          </div>
+          <div class="mb-5">
+            <h4 class="text-sm font-semibold mb-2">দাম</h4>
+            <div class="space-y-2 text-sm">
+              <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="w-4 h-4 rounded border-cream-400 text-brand-600 focus:ring-brand-500"> ৳১০০ - ৳৫০০</label>
+              <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="w-4 h-4 rounded border-cream-400 text-brand-600 focus:ring-brand-500"> ৳৫০০ - ৳১০০০</label>
+              <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="w-4 h-4 rounded border-cream-400 text-brand-600 focus:ring-brand-500"> ৳১০০০ - ৳২০০০</label>
+              <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" class="w-4 h-4 rounded border-cream-400 text-brand-600 focus:ring-brand-500"> ৳২০০০+</label>
+            </div>
+          </div>
+          <div>
+            <h4 class="text-sm font-semibold mb-2">সর্ট করুন</h4>
+            <select class="w-full bg-cream-50 border border-cream-300 rounded-lg py-2 px-3 text-sm">
+              <option>জনপ্রিয়</option>
+              <option>নতুন আগমন</option>
+              <option>দাম: কম → বেশি</option>
+              <option>দাম: বেশি → কম</option>
+              <option>সর্বাধিক বিক্রিত</option>
+            </select>
+          </div>
+        </div>
+      </aside>
+      <!-- Products Grid -->
+      <div class="flex-1">
+        <div class="flex items-center justify-between mb-4">
+          <p class="text-sm text-navy-400">মোট <span class="font-semibold text-navy-600">১২টি</span> পণ্য পাওয়া গেছে</p>
+          <!-- Mobile filter button -->
+          <button class="md:hidden bg-white border border-cream-300 rounded-lg px-3 py-1.5 text-sm flex items-center gap-1"><iconify-icon icon="lucide:sliders-horizontal" width="14"></iconify-icon> ফিল্টার</button>
+        </div>
+        <div class="grid grid-cols-2 lg:grid-cols-3 gap-4" id="shopProducts"></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ======== PRODUCT DETAIL PAGE ======== -->
+<div id="page-product" class="page">
+  <section class="max-w-7xl mx-auto px-4 py-8">
+    <div class="flex items-center gap-2 text-sm text-navy-400 mb-6 font-en">
+      <a href="#" onclick="showPage('home')" class="hover:text-brand-600 transition-colors">Home</a>
+      <iconify-icon icon="lucide:chevron-right" width="14"></iconify-icon>
+      <a href="#" onclick="showPage('shop')" class="hover:text-brand-600 transition-colors">Categories</a>
+      <iconify-icon icon="lucide:chevron-right" width="14"></iconify-icon>
+      <span class="text-navy-600" id="pdpBreadcrumb">পণ্য</span>
+    </div>
+    <div class="grid md:grid-cols-2 gap-8 mb-12">
+      <!-- Gallery -->
+      <div>
+        <div class="bg-white rounded-2xl border border-cream-300 overflow-hidden mb-3">
+          <img id="pdpMainImg" src="https://picsum.photos/seed/product-main/600/600.jpg" class="w-full aspect-square object-cover cursor-zoom-in" onclick="zoomImage(this)">
+        </div>
+        <div class="grid grid-cols-4 gap-2">
+          <div class="bg-white rounded-xl border-2 border-brand-500 overflow-hidden cursor-pointer"><img src="https://picsum.photos/seed/product-main/150/150.jpg" class="w-full aspect-square object-cover"></div>
+          <div class="bg-white rounded-xl border border-cream-300 overflow-hidden cursor-pointer hover:border-brand-400 transition-colors"><img src="https://picsum.photos/seed/product-thumb2/150/150.jpg" class="w-full aspect-square object-cover"></div>
+          <div class="bg-white rounded-xl border border-cream-300 overflow-hidden cursor-pointer hover:border-brand-400 transition-colors"><img src="https://picsum.photos/seed/product-thumb3/150/150.jpg" class="w-full aspect-square object-cover"></div>
+          <div class="bg-white rounded-xl border border-cream-300 overflow-hidden cursor-pointer hover:border-brand-400 transition-colors"><img src="https://picsum.photos/seed/product-thumb4/150/150.jpg" class="w-full aspect-square object-cover"></div>
+        </div>
+      </div>
+      <!-- Details -->
+      <div>
+        <div class="inline-flex items-center gap-1 bg-brand-50 text-brand-700 text-xs font-medium px-3 py-1 rounded-full mb-3"><iconify-icon icon="lucide:check-circle" width="12"></iconify-icon> স্টকে আছে</div>
+        <h1 id="pdpTitle" class="text-2xl md:text-3xl font-bold mb-3">প্রিমিয়াম LED টেবিল ল্যাম্প — আই-কেয়ার সিরিজ</h1>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="flex gap-0.5"><iconify-icon icon="lucide:star" width="16" class="text-gold-400"></iconify-icon><iconify-icon icon="lucide:star" width="16" class="text-gold-400"></iconify-icon><iconify-icon icon="lucide:star" width="16" class="text-gold-400"></iconify-icon><iconify-icon icon="lucide:star" width="16" class="text-gold-400"></iconify-icon><iconify-icon icon="lucide:star" width="16" class="text-navy-200"></iconify-icon></div>
+          <span class="text-sm text-navy-400">(৪.২ / ৫ — ১২৮ রিভিউ)</span>
+        </div>
+        <div class="flex items-baseline gap-3 mb-4">
+          <span class="text-3xl font-bold text-terra-500" id="pdpPrice">৳৮৫০</span>
+          <span class="text-lg text-navy-400 line-through" id="pdpOldPrice">৳১২০০</span>
+          <span class="bg-terra-500 text-white text-xs font-bold px-2 py-0.5 rounded-full" id="pdpDiscount">-২৯%</span>
+        </div>
+        <p class="text-sm text-navy-400 mb-6">পড়াশোনা বা কাজের জন্য আরামদায়ক আলো, চোখের ক্ষতি ছাড়া দীর্ঘ সময় ব্যবহার করুন। ৩ মোড ব্রাইটনেস কন্ট্রোল।</p>
+        <div class="space-y-3 mb-6">
+          <div class="flex items-center gap-3 text-sm"><iconify-icon icon="lucide:truck" width="18" class="text-brand-600"></iconify-icon><span>ঢাকার ভিতরে ডেলিভারি: ৬০ টাকা (১-২ দিন)</span></div>
+          <div class="flex items-center gap-3 text-sm"><iconify-icon icon="lucide:truck" width="18" class="text-brand-600"></iconify-icon><span>ঢাকার বাইরে ডেলিভারি: ১২০ টাকা (৩-৫ দিন)</span></div>
+          <div class="flex items-center gap-3 text-sm"><iconify-icon icon="lucide:banknote" width="18" class="text-brand-600"></iconify-icon><span>ক্যাশ অন ডেলিভারি সুবিধা প্রযোজ্য</span></div>
+        </div>
+        <div class="flex items-center gap-3 mb-6">
+          <label class="text-sm font-medium">পরিমাণ:</label>
+          <div class="flex items-center border border-cream-300 rounded-lg">
+            <button onclick="changeQty(-1)" class="px-3 py-2 hover:bg-cream-100 transition-colors text-lg">−</button>
+            <span id="pdpQty" class="px-4 py-2 border-x border-cream-300 font-medium">১</span>
+            <button onclick="changeQty(1)" class="px-3 py-2 hover:bg-cream-100 transition-colors text-lg">+</button>
+          </div>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-3">
+          <button onclick="addToCartFromPDP()" class="flex-1 bg-terra-500 hover:bg-terra-600 text-white py-3.5 rounded-xl font-bold text-sm transition-colors pulse-cta">এখনই অর্ডার করুন</button>
+          <button onclick="addToCartFromPDP(true)" class="flex-1 bg-brand-600 hover:bg-brand-700 text-white py-3.5 rounded-xl font-bold text-sm transition-colors flex items-center justify-center gap-2"><iconify-icon icon="lucide:shopping-cart" width="18"></iconify-icon> কার্টে যোগ করুন</button>
+        </div>
+      </div>
+    </div>
+    <!-- Description Tabs -->
+    <div class="mb-12">
+      <div class="flex gap-1 border-b border-cream-300 mb-6 overflow-x-auto">
+        <button onclick="switchTab('desc')" class="tab-btn px-5 py-3 text-sm font-medium border-b-2 border-brand-600 text-brand-700 whitespace-nowrap" data-tab="desc">পণ্যের বিবরণ</button>
+        <button onclick="switchTab('specs')" class="tab-btn px-5 py-3 text-sm font-medium border-b-2 border-transparent text-navy-400 hover:text-navy-600 whitespace-nowrap" data-tab="specs">স্পেসিফিকেশন</button>
+        <button onclick="switchTab('reviews')" class="tab-btn px-5 py-3 text-sm font-medium border-b-2 border-transparent text-navy-400 hover:text-navy-600 whitespace-nowrap" data-tab="reviews">রিভিউ</button>
+        <button onclick="switchTab('faq')" class="tab-btn px-5 py-3 text-sm font-medium border-b-2 border-transparent text-navy-400 hover:text-navy-600 whitespace-nowrap" data-tab="faq">প্রশ্নোত্তর</button>
+      </div>
+      <div id="tab-desc" class="tab-content">
+        <div class="bg-white rounded-2xl border border-cream-300 p-6">
+          <h3 class="font-bold mb-3">প্রিমিয়াম LED টেবিল ল্যাম্প — আই-কেয়ার সিরিজ</h3>
+          <p class="text-sm text-navy-400 mb-4">এই টেবিল ল্যাম্পটি আপনার পড়াশোনা, অফিস কাজ বা রাতের পড়ার জন্য পারফেক্ট। এতে আছে আই-কেয়ার প্রযুক্তি যা চোখের ক্ষতি ছাড়াই দীর্ঘ সময় ব্যবহারের সুবিধা দেয়।</p>
+          <h4 class="font-semibold mb-2">মূল বৈশিষ্ট্য:</h4>
+          <ul class="space-y-1.5 text-sm text-navy-400">
+            <li class="flex items-start gap-2"><iconify-icon icon="lucide:check" width="16" class="text-brand-600 mt-0.5 shrink-0"></iconify-icon> ৩ মোড ব্রাইটনেস অ্যাডজাস্টমেন্ট</li>
+            <li class="flex items-start gap-2"><iconify-icon icon="lucide:check" width="16" class="text-brand-600 mt-0.5 shrink-0"></iconify-icon> আই-কেয়ার ফ্লিকার-ফ্রি প্রযুক্তি</li>
+            <li class="flex items-start gap-2"><iconify-icon icon="lucide:check" width="16" class="text-brand-600 mt-0.5 shrink-0"></iconify-icon> USB চার্জিং পোর্ট সম্বলিত</li>
+            <li class="flex items-start gap-2"><iconify-icon icon="lucide:check" width="16" class="text-brand-600 mt-0.5 shrink-0"></iconify-icon> ফ্লেক্সিবল নেক ডিজাইন</li>
+            <li class="flex items-start gap-2"><iconify-icon icon="lucide:check" width="16" class="text-brand-600 mt-0.5 shrink-0"></iconify-icon> বিদ্যুৎ সাশ্রয়ী LED বাল্ব</li>
+          </ul>
+        </div>
+      </div>
+      <div id="tab-specs" class="tab-content hidden">
+        <div class="bg-white rounded-2xl border border-cream-300 p-6">
+          <table class="w-full text-sm">
+            <tr class="border-b border-cream-200"><td class="py-3 font-medium text-navy-500 w-1/3">ব্র্যান্ড</td><td class="py-3">GhorBazar Premium</td></tr>
+            <tr class="border-b border-cream-200"><td class="py-3 font-medium text-navy-500">মডেল</td><td class="py-3">IC-200 Pro</td></tr>
+            <tr class="border-b border-cream-200"><td class="py-3 font-medium text-navy-500">ওয়াট</td><td class="py-3">১২W</td></tr>
+            <tr class="border-b border-cream-200"><td class="py-3 font-medium text-navy-500">কালার টেম্পারেচার</td><td class="py-3">৩০০০K - ৬৫০০K</td></tr>
+            <tr class="border-b border-cream-200"><td class="py-3 font-medium text-navy-500">উপাদান</td><td class="py-3">ABS + অ্যালুমিনিয়াম</td></tr>
+            <tr><td class="py-3 font-medium text-navy-500">ওয়ারেন্টি</td><td class="py-3">৬ মাস</td></tr>
+          </table>
+        </div>
+      </div>
+      <div id="tab-reviews" class="tab-content hidden">
+        <div class="space-y-4">
+          <div class="bg-white rounded-2xl border border-cream-300 p-5">
+            <div class="flex items-center gap-3 mb-2"><img src="https://picsum.photos/seed/rev1/36/36.jpg" class="w-8 h-8 rounded-full"><div><p class="text-sm font-medium">মাহমুদ হাসান</p><div class="flex gap-0.5"><iconify-icon icon="lucide:star" width="12" class="text-gold-400"></iconify-icon><iconify-icon icon="lucide:star" width="12" class="text-gold-400"></iconify-icon><iconify-icon icon="lucide:star" width="12" class="text-gold-400"></iconify-icon><iconify-icon icon="lucide:star" width="12" class="text-gold-400"></iconify-icon><iconify-icon icon="lucide:star" width="12" class="text-gold-400"></iconify-icon></div></div></div>
+            <p class="text-sm text-navy-400">ল্যাম্পটা চমৎকার! পড়ার সময় চোখে একদম ক্লান্তি হয় না। USB পোর্ট থাকায় ফোন চার্জ করা যায়, খুব সুবিধা।</p>
+          </div>
+          <div class="bg-white rounded-2xl border border-cream-300 p-5">
+            <div class="flex items-center gap-3 mb-2"><img src="https://picsum.photos/seed/rev2/36/36.jpg" class="w-8 h-8 rounded-full"><div><p class="text-sm font-medium">তানজিনা ইসলাম</p><div class="flex gap-0.5"><iconify-icon icon="lucide:star" width="12" class="text-gold-400"></iconify-icon><iconify-icon icon="lucide:star" width="12" class="text-gold-400"></iconify-icon><iconify-icon icon="lucide:star" width="12" class="text-gold-400"></iconify-icon><iconify-icon icon="lucide:star" width="12" class="text-gold-400"></iconify-icon><iconify-icon icon="lucide:star" width="12" class="text-navy-200"></iconify-icon></div></div></div>
+            <p class="text-sm text-navy-400">দামের তুলনায় ভালো কোয়ালিটি। ব্রাইটনেস ৩ মোডে চেঞ্জ করা যায়, রাতে লো মোডে খুব আরাম।</p>
+          </div>
+        </div>
+      </div>
+      <div id="tab-faq" class="tab-content hidden">
+        <div class="space-y-3">
+          <details class="bg-white rounded-xl border border-cream-300 group" open>
+            <summary class="p-4 cursor-pointer flex items-center justify-between font-medium text-sm"><span>ডেলিভারি কত দিনে হয়?</span><iconify-icon icon="lucide:chevron-down" width="18" class="text-navy-400 group-open:rotate-180 transition-transform"></iconify-icon></summary>
+            <div class="px-4 pb-4 text-sm text-navy-400">ঢাকার ভিতরে ১-২ কার্যদিবসে এবং ঢাকার বাইরে ৩-৫ কার্যদিবসে ডেলিভারি হয়।</div>
+          </details>
+          <details class="bg-white rounded-xl border border-cream-300 group">
+            <summary class="p-4 cursor-pointer flex items-center justify-between font-medium text-sm"><span>ওয়ারেন্টি আছে কি?</span><iconify-icon icon="lucide:chevron-down" width="18" class="text-navy-400 group-open:rotate-180 transition-transform"></iconify-icon></summary>
+            <div class="px-4 pb-4 text-sm text-navy-400">হ্যাঁ, ৬ মাসের ওয়ারেন্টি দেওয়া হয়। কোনো সমস্যা হলে আমাদের সাথে যোগাযোগ করুন।</div>
+          </details>
+          <details class="bg-white rounded-xl border border-cream-300 group">
+            <summary class="p-4 cursor-pointer flex items-center justify-between font-medium text-sm"><span>রিটার্ন পলিসি কী?</span><iconify-icon icon="lucide:chevron-down" width="18" class="text-navy-400 group-open:rotate-180 transition-transform"></iconify-icon></summary>
+            <div class="px-4 pb-4 text-sm text-navy-400">পণ্য হাতে পাওয়ার ৩ দিনের মধ্যে কোনো সমস্যা থাকলে রিটার্ন করতে পারবেন। বিস্তারিত জানতে রিটার্ন পলিসি দেখুন।</div>
+          </details>
+        </div>
+      </div>
+    </div>
+    <!-- Related Products -->
+    <div>
+      <h2 class="text-xl font-bold mb-6">সম্পর্কিত পণ্য</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="relatedProducts"></div>
+    </div>
+  </section>
+</div>
+
+<!-- ======== CHECKOUT PAGE ======== -->
+<div id="page-checkout" class="page">
+  <section class="max-w-3xl mx-auto px-4 py-8">
+    <h1 class="text-2xl font-bold mb-6 text-center">অর্ডার কনফার্ম করুন</h1>
+    <div class="grid md:grid-cols-5 gap-6">
+      <!-- Form -->
+      <div class="md:col-span-3">
+        <div class="bg-white rounded-2xl border border-cream-300 p-6">
+          <h3 class="font-bold mb-4">আপনার তথ্য দিন</h3>
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium mb-1">আপনার নাম <span class="text-terra-500">*</span></label>
+              <input type="text" id="checkName" placeholder="পুরো নাম লিখুন" class="w-full bg-cream-50 border border-cream-300 rounded-xl py-3 px-4 text-sm">
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-1">মোবাইল নম্বর <span class="text-terra-500">*</span></label>
+              <input type="tel" id="checkPhone" placeholder="০১XXXXXXXXX" class="w-full bg-cream-50 border border-cream-300 rounded-xl py-3 px-4 text-sm">
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-1">সম্পূর্ণ ঠিকানা <span class="text-terra-500">*</span></label>
+              <textarea id="checkAddress" rows="3" placeholder="বাসা/ফ্ল্যাট নম্বর, রোড, এলাকা" class="w-full bg-cream-50 border border-cream-300 rounded-xl py-3 px-4 text-sm resize-none"></textarea>
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-sm font-medium mb-1">জেলা <span class="text-terra-500">*</span></label>
+                <select id="checkDistrict" onchange="updateDelivery()" class="w-full bg-cream-50 border border-cream-300 rounded-xl py-3 px-4 text-sm">
+                  <option value="">জেলা নির্বাচন করুন</option>
+                  <option value="dhaka">ঢাকা</option>
+                  <option value="outside">ঢাকার বাইরে</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-sm font-medium mb-1">এলাকা</label>
+                <input type="text" placeholder="এলাকার নাম" class="w-full bg-cream-50 border border-cream-300 rounded-xl py-3 px-4 text-sm">
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm font-medium mb-1">অর্ডার নোট (ঐচ্ছিক)</label>
+              <textarea rows="2" placeholder="কোনো বিশেষ নির্দেশনা থাকলে লিখুন" class="w-full bg-cream-50 border border-cream-300 rounded-xl py-3 px-4 text-sm resize-none"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Summary -->
+      <div class="md:col-span-2">
+        <div class="bg-white rounded-2xl border border-cream-300 p-6 sticky top-28">
+          <h3 class="font-bold mb-4">অর্ডার সামারি</h3>
+          <div id="checkoutItems" class="space-y-3 mb-4 max-h-48 overflow-y-auto"></div>
+          <div class="border-t border-cream-300 pt-3 space-y-2 text-sm">
+            <div class="flex justify-between"><span class="text-navy-400">পণ্যের মূল্য</span><span id="checkSubtotal" class="font-medium">৳০</span></div>
+            <div class="flex justify-between"><span class="text-navy-400">ডেলিভারি চার্জ</span><span id="checkDelivery" class="font-medium">৳০</span></div>
+            <div class="flex justify-between text-lg font-bold border-t border-cream-300 pt-2"><span>মোট মূল্য</span><span id="checkTotal" class="text-terra-500">৳০</span></div>
+          </div>
+          <button onclick="confirmOrder()" class="w-full bg-terra-500 hover:bg-terra-600 text-white py-3.5 rounded-xl font-bold text-sm transition-colors mt-4 pulse-cta">অর্ডার কনফার্ম করুন</button>
+          <div class="mt-4 space-y-2 text-xs text-navy-400">
+            <p class="flex items-start gap-2"><iconify-icon icon="lucide:shield-check" width="14" class="text-brand-600 shrink-0 mt-0.5"></iconify-icon> অর্ডার করার পর আমাদের প্রতিনিধি আপনার সাথে যোগাযোগ করবে</p>
+            <p class="flex items-start gap-2"><iconify-icon icon="lucide:banknote" width="14" class="text-brand-600 shrink-0 mt-0.5"></iconify-icon> ক্যাশ অন ডেলিভারি সুবিধা প্রযোজ্য</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ======== ABOUT PAGE ======== -->
+<div id="page-about" class="page">
+  <section class="max-w-4xl mx-auto px-4 py-12">
+    <div class="text-center mb-12">
+      <div class="inline-flex items-center gap-2 bg-brand-50 text-brand-700 text-xs font-medium px-4 py-1.5 rounded-full mb-4 font-en">About Us</div>
+      <h1 class="text-3xl md:text-4xl font-bold mb-4">GhorBazar সম্পর্কে</h1>
+      <p class="text-navy-400 max-w-2xl mx-auto">আমরা বাংলাদেশের প্রতিটি ঘরকে সুন্দর ও কার্যকরী করে তোলার লক্ষ্যে কাজ করি</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-8 items-center mb-16">
+      <img src="https://picsum.photos/seed/bd-about-team/500/400.jpg" class="rounded-3xl w-full object-cover aspect-[5/4] shadow-lg">
+      <div>
+        <h2 class="text-2xl font-bold mb-4">আমাদের গল্প</h2>
+        <p class="text-navy-400 mb-4">GhorBazar শুরু হয়েছিল একটি সহজ ভাবনা থেকে — বাংলাদেশের মানুষ যাতে সহজেই মানসম্মত ঘরোয়া পণ্য পায়, সেই উদ্দেশ্যে। আমরা বিশ্বাস করি, প্রতিটি পরিবারেরই ভালো মানের, সাশ্রয়ী এবং ব্যবহারবান্ধব পণ্য পাওয়ার অধিকার আছে।</p>
+        <p class="text-navy-400">আমাদের টিম সবসময় চেষ্টা করে সেরা পণ্য বেছে নিতে, যা আপনার দৈনন্দিন জীবনকে আরও সহজ ও আরামদায়ক করবে। ফ্যান থেকে স্মার্টওয়াচ, কিচেন টুল থেকে পার্সোনাল কেয়ার — সবকিছুই এখন আপনার হাতের মুঠোয়।</p>
+      </div>
+    </div>
+    <div class="grid sm:grid-cols-3 gap-6 mb-16">
+      <div class="bg-white rounded-2xl border border-cream-300 p-6 text-center">
+        <div class="w-14 h-14 mx-auto bg-brand-50 rounded-2xl flex items-center justify-center mb-3"><iconify-icon icon="lucide:target" width="28" class="text-brand-600"></iconify-icon></div>
+        <h3 class="font-bold mb-2">আমাদের লক্ষ্য</h3>
+        <p class="text-sm text-navy-400">বাংলাদেশের প্রতিটি ঘরে মানসম্মত ও সাশ্রয়ী পণ্য পৌঁছে দেওয়া</p>
+      </div>
+      <div class="bg-white rounded-2xl border border-cream-300 p-6 text-center">
+        <div class="w-14 h-14 mx-auto bg-gold-50 rounded-2xl flex items-center justify-center mb-3"><iconify-icon icon="lucide:gem" width="28" class="text-gold-500"></iconify-icon></div>
+        <h3 class="font-bold mb-2">মানের প্রতিশ্রুতি</h3>
+        <p class="text-sm text-navy-400">প্রতিটি পণ্য যাচাই করে তবেই আমরা আপনার কাছে পাঠাই</p>
+      </div>
+      <div class="bg-white rounded-2xl border border-cream-300 p-6 text-center">
+        <div class="w-14 h-14 mx-auto bg-terra-50 rounded-2xl flex items-center justify-center mb-3"><iconify-icon icon="lucide:heart" width="28" class="text-terra-500"></iconify-icon></div>
+        <h3 class="font-bold mb-2">গ্রাহক প্রথম</h3>
+        <p class="text-sm text-navy-400">আপনার সন্তুষ্টিই আমাদের সবচেয়ে বড় অর্জন</p>
+      </div>
+    </div>
+    <div class="bg-brand-700 rounded-3xl p-8 md:p-12 text-center text-white">
+      <h2 class="text-2xl font-bold mb-3">আমাদের সাথে যুক্ত থাকুন</h2>
+      <p class="text-white/70 mb-6">প্রতিদিন নতুন পণ্য, নতুন অফার — সবার আগে জানতে ফলো করুন</p>
+      <div class="flex justify-center gap-3">
+        <a href="#" class="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-xl flex items-center justify-center transition-colors"><iconify-icon icon="lucide:facebook" width="20"></iconify-icon></a>
+        <a href="#" class="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-xl flex items-center justify-center transition-colors"><iconify-icon icon="lucide:instagram" width="20"></iconify-icon></a>
+        <a href="#" class="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-xl flex items-center justify-center transition-colors"><iconify-icon icon="lucide:message-circle" width="20"></iconify-icon></a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ======== CONTACT PAGE ======== -->
+<div id="page-contact" class="page">
+  <section class="max-w-4xl mx-auto px-4 py-12">
+    <div class="text-center mb-12">
+      <div class="inline-flex items-center gap-2 bg-brand-50 text-brand-700 text-xs font-medium px-4 py-1.5 rounded-full mb-4 font-en">Contact Us</div>
+      <h1 class="text-3xl md:text-4xl font-bold mb-4">যোগাযোগ করুন</h1>
+      <p class="text-navy-400">যেকোনো প্রশ্ন বা সমস্যায় আমরা আপনার পাশে আছি</p>
+    </div>
+    <div class="grid md:grid-cols-5 gap-6">
+      <div class="md:col-span-3">
+        <div class="bg-white rounded-2xl border border-cream-300 p-6">
+          <h3 class="font-bold mb-4">মেসেজ পাঠান</h3>
+          <div class="space-y-4">
+            <div><label class="block text-sm font-medium mb-1">আপনার নাম</label><input type="text" placeholder="নাম লিখুন" class="w-full bg-cream-50 border border-cream-300 rounded-xl py-3 px-4 text-sm"></div>
+            <div><label class="block text-sm font-medium mb-1">মোবাইল নম্বর</label><input type="tel" placeholder="০১XXXXXXXXX" class="w-full bg-cream-50 border border-cream-300 rounded-xl py-3 px-4 text-sm"></div>
+            <div><label class="block text-sm font-medium mb-1">বিষয়</label><input type="text" placeholder="কী বিষয়ে যোগাযোগ করছেন?" class="w-full bg-cream-50 border border-cream-300 rounded-xl py-3 px-4 text-sm"></div>
+            <div><label class="block text-sm font-medium mb-1">মেসেজ</label><textarea rows="4" placeholder="আপনার মেসেজ লিখুন..." class="w-full bg-cream-50 border border-cream-300 rounded-xl py-3 px-4 text-sm resize-none"></textarea></div>
+            <button onclick="showToast('আপনার মেসেজ পাঠানো হয়েছে! শীঘ্রই যোগাযোগ করব।','success')" class="w-full bg-brand-600 hover:bg-brand-700 text-white py-3.5 rounded-xl font-bold text-sm transition-colors">পাঠান</button>
+          </div>
+        </div>
+      </div>
+      <div class="md:col-span-2 space-y-4">
+        <div class="bg-white rounded-2xl border border-cream-300 p-6">
+          <h3 class="font-bold mb-4">যোগাযোগের তথ্য</h3>
+          <div class="space-y-4 text-sm">
+            <div class="flex gap-3"><iconify-icon icon="lucide:phone" width="18" class="text-brand-600 shrink-0 mt-0.5"></iconify-icon><div><p class="font-medium">ফোন</p><p class="text-navy-400">01700-000000</p></div></div>
+            <div class="flex gap-3"><iconify-icon icon="lucide:message-circle" width="18" class="text-brand-600 shrink-0 mt-0.5"></iconify-icon><div><p class="font-medium">WhatsApp</p><p class="text-navy-400">01700-000000</p></div></div>
+            <div class="flex gap-3"><iconify-icon icon="lucide:mail" width="18" class="text-brand-600 shrink-0 mt-0.5"></iconify-icon><div><p class="font-medium">ইমেইল</p><p class="text-navy-400">support@ghorbazar.com</p></div></div>
+            <div class="flex gap-3"><iconify-icon icon="lucide:map-pin" width="18" class="text-brand-600 shrink-0 mt-0.5"></iconify-icon><div><p class="font-medium">ঠিকানা</p><p class="text-navy-400">ঢাকা, বাংলাদেশ</p></div></div>
+          </div>
+        </div>
+        <div class="bg-brand-700 rounded-2xl p-6 text-white text-center">
+          <iconify-icon icon="lucide:clock" width="28" class="text-gold-300 mb-2"></iconify-icon>
+          <h4 class="font-bold mb-1">সাপোর্ট সময়</h4>
+          <p class="text-white/70 text-sm">শনিবার - বৃহস্পতিবার<br>সকাল ১০টা - রাত ১০টা</p>
+        </div>
+        <a href="https://wa.me/8801700000000" class="flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white py-3.5 rounded-xl font-bold text-sm transition-colors"><iconify-icon icon="lucide:message-circle" width="18"></iconify-icon> WhatsApp এ মেসেজ করুন</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ======== TRACK ORDER PAGE ======== -->
+<div id="page-track" class="page">
+  <section class="max-w-lg mx-auto px-4 py-16">
+    <div class="text-center mb-8">
+      <iconify-icon icon="lucide:package-search" width="48" class="text-brand-600 mb-3"></iconify-icon>
+      <h1 class="text-2xl font-bold mb-2">অর্ডার ট্র্যাক করুন</h1>
+      <p class="text-navy-400 text-sm">আপনার অর্ডার আইডি বা মোবাইল নম্বর দিয়ে অর্ডারের অবস্থা দেখুন</p>
+    </div>
+    <div class="bg-white rounded-2xl border border-cream-300 p-6">
+      <div class="space-y-4">
+        <div><label class="block text-sm font-medium mb-1">অর্ডার আইডি বা মোবাইল নম্বর</label><input type="text" placeholder="যেমন: GB-12345 বা 017XXXXXXXX" class="w-full bg-cream-50 border border-cream-300 rounded-xl py-3 px-4 text-sm"></div>
+        <button onclick="showToast('অর্ডার পাওয়া যায়নি। সঠিক তথ্য দিন।','error')" class="w-full bg-brand-600 hover:bg-brand-700 text-white py-3.5 rounded-xl font-bold text-sm transition-colors">খুঁজুন</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ======== ORDER SUCCESS PAGE ======== -->
+<div id="page-success" class="page">
+  <section class="max-w-lg mx-auto px-4 py-20 text-center">
+    <div class="w-20 h-20 mx-auto bg-brand-50 rounded-full flex items-center justify-center mb-6"><iconify-icon icon="lucide:check-circle-2" width="48" class="text-brand-600"></iconify-icon></div>
+    <h1 class="text-2xl font-bold text-brand-700 mb-3">অর্ডার সফল হয়েছে!</h1>
+    <p class="text-navy-400 mb-2">আপনার অর্ডারটি সফলভাবে গ্রহণ করা হয়েছে।</p>
+    <p class="text-navy-400 mb-8 text-sm">শীঘ্রই আমাদের প্রতিনিধি আপনার সাথে যোগাযোগ করবে। অর্ডার আইডি: <span class="font-bold text-brand-700" id="successOrderId">GB-00000</span></p>
+    <div class="flex flex-col sm:flex-row gap-3 justify-center">
+      <button onclick="showPage('home')" class="bg-brand-600 hover:bg-brand-700 text-white px-8 py-3 rounded-xl font-bold text-sm transition-colors">হোম পেজে যান</button>
+      <button onclick="showPage('track')" class="bg-cream-200 hover:bg-cream-300 text-navy-600 px-8 py-3 rounded-xl font-bold text-sm transition-colors">অর্ডার ট্র্যাক করুন</button>
+    </div>
+  </section>
+</div>
+
+</main>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="bg-navy-600 text-white mt-0">
+  <div class="max-w-7xl mx-auto px-4 py-12">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+      <div class="col-span-2 md:col-span-1">
+        <a href="#" onclick="showPage('home')" class="flex items-center gap-2 mb-4">
+          <div class="w-9 h-9 bg-brand-500 rounded-lg flex items-center justify-center"><iconify-icon icon="lucide:home" width="20" class="text-white"></iconify-icon></div>
+          <span class="text-xl font-bold font-en">Ghor<span class="text-terra-400">Bazar</span></span>
+        </a>
+        <p class="text-white/60 text-sm mb-4">আপনার ঘরের দরকারি সব পণ্য — বিশ্বস্ত মানে, সাশ্রয়ী দামে।</p>
+        <div class="flex gap-2">
+          <a href="#" class="w-9 h-9 bg-white/10 hover:bg-white/20 rounded-lg flex items-center justify-center transition-colors"><iconify-icon icon="lucide:facebook" width="18"></iconify-icon></a>
+          <a href="#" class="w-9 h-9 bg-white/10 hover:bg-white/20 rounded-lg flex items-center justify-center transition-colors"><iconify-icon icon="lucide:instagram" width="18"></iconify-icon></a>
+          <a href="#" class="w-9 h-9 bg-white/10 hover:bg-white/20 rounded-lg flex items-center justify-center transition-colors"><iconify-icon icon="lucide:message-circle" width="18"></iconify-icon></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-bold mb-3 font-en">Quick Links</h4>
+        <nav class="space-y-2 text-sm text-white/60">
+          <a href="#" onclick="showPage('home')" class="block hover:text-white transition-colors">Home</a>
+          <a href="#" onclick="showPage('shop')" class="block hover:text-white transition-colors">Categories</a>
+          <a href="#" onclick="showPage('about')" class="block hover:text-white transition-colors">About</a>
+          <a href="#" onclick="showPage('contact')" class="block hover:text-white transition-colors">Contact</a>
+          <a href="#" onclick="showPage('track')" class="block hover:text-white transition-colors">Track Order</a>
+        </nav>
+      </div>
+      <div>
+        <h4 class="font-bold mb-3">নীতিমালা</h4>
+        <nav class="space-y-2 text-sm text-white/60">
+          <a href="#" class="block hover:text-white transition-colors">প্রাইভেসি পলিসি</a>
+          <a href="#" class="block hover:text-white transition-colors">রিটার্ন পলিসি</a>
+          <a href="#" class="block hover:text-white transition-colors">টার্মস ও কন্ডিশন</a>
+          <a href="#" class="block hover:text-white transition-colors">ডেলিভারি পলিসি</a>
+        </nav>
+      </div>
+      <div>
+        <h4 class="font-bold mb-3">যোগাযোগ</h4>
+        <div class="space-y-2 text-sm text-white/60">
+          <p class="flex items-center gap-2"><iconify-icon icon="lucide:phone" width="14"></iconify-icon> 01700-000000</p>
+          <p class="flex items-center gap-2"><iconify-icon icon="lucide:mail" width="14"></iconify-icon> support@ghorbazar.com</p>
+          <p class="flex items-center gap-2"><iconify-icon icon="lucide:map-pin" width="14"></iconify-icon> ঢাকা, বাংলাদেশ</p>
+        </div>
+        <div class="mt-4 bg-white/5 rounded-xl p-3 text-xs text-white/50">
+          <p class="flex items-center gap-1"><iconify-icon icon="lucide:banknote" width="12"></iconify-icon> ক্যাশ অন ডেলিভারি সুবিধা</p>
+          <p class="flex items-center gap-1 mt-1"><iconify-icon icon="lucide:shield-check" width="12"></iconify-icon> ১০০% বিশ্বস্ত সেবা</p>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-white/40">
+      <p>© ২০২৫ GhorBazar — সর্বস্বত্ব সংরক্ষিত</p>
+      <p>সশ্রয়ী দামে মানসম্মত পণ্য — বাংলাদেশের বিশ্বস্ত অনলাইন শপ</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Image Zoom Modal -->
+<div id="zoomModal" class="fixed inset-0 bg-black/80 z-[80] hidden flex items-center justify-center p-4" onclick="this.classList.add('hidden')">
+  <img id="zoomImg" src="" class="max-w-full max-h-full object-contain rounded-lg">
+  <button class="absolute top-4 right-4 text-white/70 hover:text-white p-2"><iconify-icon icon="lucide:x" width="28"></iconify-icon></button>
+</div>
+
+<script>
+// ==================== DATA ====================
+const products = [
+  { id:1, name:'প্রিমিয়াম LED টেবিল ল্যাম্প', price:850, oldPrice:1200, discount:29, category:'lighting', badge:'বেস্ট সেলার', img:'bd-lamp1', rating:4.2, reviews:128, selling:'চোখের জন্য নিরাপদ আলো' },
+  { id:2, name:'স্মার্টওয়াচ Pro X7', price:1450, oldPrice:2200, discount:34, category:'gadgets', badge:'হট ডিল', img:'bd-smartwatch1', rating:4.5, reviews:256, selling:'হেলথ ট্র্যাকিং সুবিধা' },
+  { id:3, name:'রিচার্জেবল পেডেস্টাল ফ্যান', price:1850, oldPrice:2500, discount:26, category:'electronics', badge:'নতুন', img:'bd-fan1', rating:4.3, reviews:89, selling:'লো নয়েজ, পাওয়ারফুল এয়ার' },
+  { id:4, name:'ওয়্যারলেস ইয়ারবাড A10', price:650, oldPrice:950, discount:32, category:'gadgets', badge:'ট্রেন্ডিং', img:'bd-earbuds1', rating:4.1, reviews:312, selling:'ক্লিয়ার সাউন্ড, দীর্ঘ ব্যাটারি' },
+  { id:5, name:'স্টেইনলেস স্টিল লাঞ্চবক্স সেট', price:520, oldPrice:750, discount:31, category:'kitchen', badge:'', img:'bd-lunchbox1', rating:4.4, reviews:95, selling:'ফুড গ্রেড, লিক-প্রুফ' },
+  { id:6, name:'ফ্লেক্সিবল ফোন হোল্ডার', price:350, oldPrice:500, discount:30, category:'accessories', badge:'', img:'bd-phoneholder1', rating:4.0, reviews:178, selling:'বেড, ডেস্ক — যেকোনো জায়গায়' },
+  { id:7, name:'অটোমেটিক টুথপেস্ট ডিসপেনসার', price:380, oldPrice:550, discount:31, category:'personal', badge:'জনপ্রিয়', img:'bd-dispenser1', rating:4.3, reviews:67, selling:'হাইজেনিক ও সহজ ব্যবহার' },
+  { id:8, name:'মাল্টি-পারপাস স্টোরেজ বক্স', price:450, oldPrice:650, discount:31, category:'home', badge:'', img:'bd-storage1', rating:4.2, reviews:143, selling:'ঘর সুন্দর ও গোছানো রাখুন' },
+  { id:9, name:'USB চার্জিং ডেস্ক ল্যাম্প', price:720, oldPrice:1000, discount:28, category:'lighting', badge:'', img:'bd-desklamp2', rating:4.6, reviews:84, selling:'ফোন চার্জ + আলো একসাথে' },
+  { id:10, name:'ব্লুটুথ হেডফোন BH-500', price:980, oldPrice:1500, discount:35, category:'gadgets', badge:'হট', img:'bd-headphone1', rating:4.4, reviews:201, selling:'বেস বুস্ট, আরামদায়ক ফিট' },
+  { id:11, name:'ভেজিটেবল চপার প্রো', price:580, oldPrice:800, discount:28, category:'kitchen', badge:'', img:'bd-chopper1', rating:4.1, reviews:119, selling:'১ মিনিটে কাটা শেষ' },
+  { id:12, name:'ফাস্ট চার্জ ডাটা ক্যাবল ৩-ইন-১', price:250, oldPrice:400, discount:38, category:'accessories', badge:'সেরা মূল্য', img:'bd-cable1', rating:4.0, reviews:389, selling:'টাইপ-C, লাইটনিং, মাইক্রো USB' }
+];
+
+let cart = [];
+let pdpQty = 1;
+
+// ==================== RENDER PRODUCTS ====================
+function renderProductCard(p) {
+  return `
+    <div class="product-card bg-white rounded-2xl border border-cream-300 overflow-hidden group hover:shadow-xl transition-all duration-300 hover:border-brand-300">
+      <div class="relative overflow-hidden cursor-pointer" onclick="viewProduct(${p.id})">
+        <img src="https://picsum.photos/seed/${p.img}/400/400.jpg" alt="${p.name}" class="product-img w-full aspect-square object-cover">
+        ${p.discount ? `<span class="absolute top-3 left-3 bg-terra-500 text-white text-[10px] font-bold px-2 py-1 rounded-lg">-${p.discount}%</span>` : ''}
+        ${p.badge ? `<span class="absolute top-3 right-3 bg-brand-600 text-white text-[10px] font-bold px-2 py-1 rounded-lg">${p.badge}</span>` : ''}
+      </div>
+      <div class="p-3.5">
+        <h3 class="font-medium text-sm mb-1 line-clamp-2 cursor-pointer hover:text-brand-600 transition-colors" onclick="viewProduct(${p.id})">${p.name}</h3>
+        <p class="text-xs text-navy-400 mb-2">${p.selling}</p>
+        <div class="flex items-center gap-1 mb-2">
+          <div class="flex gap-0.5">${renderStars(p.rating)}</div>
+          <span class="text-[10px] text-navy-400">(${p.reviews})</span>
+        </div>
+        <div class="flex items-baseline gap-2 mb-3">
+          <span class="text-lg font-bold text-terra-500">৳${p.price.toLocaleString()}</span>
+          ${p.oldPrice ? `<span class="text-xs text-navy-400 line-through">৳${p.oldPrice.toLocaleString()}</span>` : ''}
+        </div>
+        <button onclick="addToCart(${p.id})" class="w-full bg-brand-600 hover:bg-brand-700 text-white py-2.5 rounded-xl text-xs font-bold transition-colors">অর্ডার করুন</button>
+      </div>
+    </div>`;
+}
+
+function renderStars(rating) {
+  let s = '';
+  for(let i=1;i<=5;i++) s += `<iconify-icon icon="lucide:star" width="11" class="${i<=Math.round(rating)?'text-gold-400':'text-navy-200'}"></iconify-icon>`;
+  return s;
+}
+
+function renderHomeProducts() {
+  document.getElementById('topProducts').innerHTML = products.slice(0,8).map(renderProductCard).join('');
+}
+
+function renderShopProducts() {
+  document.getElementById('shopProducts').innerHTML = products.map(renderProductCard).join('');
+}
+
+function renderRelatedProducts() {
+  document.getElementById('relatedProducts').innerHTML = products.slice(0,4).map(renderProductCard).join('');
+}
+
+// ==================== NAVIGATION ====================
+function showPage(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(page==='shop') renderShopProducts();
+}
+
+// ==================== PRODUCT DETAIL ====================
+function viewProduct(id) {
+  const p = products.find(x=>x.id===id);
+  if(!p) return;
+  pdpQty = 1;
+  document.getElementById('pdpBreadcrumb').textContent = p.name;
+  document.getElementById('pdpTitle').textContent = p.name;
+  document.getElementById('pdpPrice').textContent = '৳'+p.price.toLocaleString();
+  document.getElementById('pdpOldPrice').textContent = p.oldPrice?'৳'+p.oldPrice.toLocaleString():'';
+  document.getElementById('pdpDiscount').textContent = p.discount?'-'+p.discount+'%':'';
+  document.getElementById('pdpMainImg').src = `https://picsum.photos/seed/${p.img}/600/600.jpg`;
+  document.getElementById('pdpQty').textContent = '১';
+  showPage('product');
+  renderRelatedProducts();
+}
+
+function changeQty(d) {
+  pdpQty = Math.max(1, pdpQty+d);
+  const bengaliNums = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+  document.getElementById('pdpQty').textContent = String(pdpQty).split('').map(n=>bengaliNums[n]||n).join('');
+}
+
+function addToCartFromPDP(goCart=false) {
+  const id = products.find(p=>p.name===document.getElementById('pdpTitle').textContent)?.id;
+  if(id) { for(let i=0;i<pdpQty;i++) addToCart(id, true); }
+  if(goCart) toggleCart();
+  else showPage('checkout');
+}
+
+// ==================== CART ====================
+function addToCart(id, silent=false) {
+  const p = products.find(x=>x.id===id);
+  if(!p) return;
+  const existing = cart.find(c=>c.id===id);
+  if(existing) existing.qty++;
+  else cart.push({id:p.id, name:p.name, price:p.price, img:p.img, qty:1});
+  updateCartUI();
+  if(!silent) showToast(`"${p.name}" কার্টে যোগ হয়েছে!`, 'success');
+}
+
+function removeFromCart(id) {
+  cart = cart.filter(c=>c.id!==id);
+  updateCartUI();
+}
+
+function updateCartQty(id, delta) {
+  const item = cart.find(c=>c.id===id);
+  if(!item) return;
+  item.qty += delta;
+  if(item.qty <= 0) cart = cart.filter(c=>c.id!==id);
+  updateCartUI();
+}
+
+function updateCartUI() {
+  const count = cart.reduce((s,c)=>s+c.qty,0);
+  const subtotal = cart.reduce((s,c)=>s+c.price*c.qty,0);
+  document.getElementById('cartCount').textContent = count;
+  document.getElementById('cartItemCount').textContent = `(${count}টি পণ্য)`;
+  
+  if(cart.length === 0) {
+    document.getElementById('emptyCart').classList.remove('hidden');
+    document.getElementById('cartItemsList').innerHTML = '';
+    document.getElementById('cartFooter').classList.add('hidden');
+  } else {
+    document.getElementById('emptyCart').classList.add('hidden');
+    document.getElementById('cartFooter').classList.remove('hidden');
+    document.getElementById('cartItemsList').innerHTML = cart.map(c=>`
+      <div class="flex gap-3 bg-cream-50 rounded-xl p-3">
+        <img src="https://picsum.photos/seed/${c.img}/80/80.jpg" class="w-16 h-16 rounded-lg object-cover shrink-0">
+        <div class="flex-1 min-w-0">
+          <p class="text-sm font-medium truncate">${c.name}</p>
+          <p class="text-sm font-bold text-terra-500">৳${(c.price*c.qty).toLocaleString()}</p>
+          <div class="flex items-center gap-2 mt-1">
+            <button onclick="updateCartQty(${c.id},-1)" class="w-6 h-6 bg-white border border-cream-300 rounded flex items-center justify-center text-xs hover:bg-cream-200">−</button>
+            <span class="text-xs font-medium">${c.qty}</span>
+            <button onclick="updateCartQty(${c.id},1)" class="w-6 h-6 bg-white border border-cream-300 rounded flex items-center justify-center text-xs hover:bg-cream-200">+</button>
+            <button onclick="removeFromCart(${c.id})" class="ml-auto text-navy-400 hover:text-terra-500 transition-colors"><iconify-icon icon="lucide:trash-2" width="14"></iconify-icon></button>
+          </div>
+        </div>
+      </div>`).join('');
+  }
+  document.getElementById('cartSubtotal').textContent = '৳'+subtotal.toLocaleString();
+  document.getElementById('cartTotal').textContent = '৳'+subtotal.toLocaleString();
+  updateCheckout();
+}
+
+function toggleCart() {
+  const sidebar = document.getElementById('cartSidebar');
+  const overlay = document.getElementById('cartOverlay');
+  const isOpen = !sidebar.classList.contains('translate-x-full');
+  if(isOpen) {
+    sidebar.classList.add('translate-x-full');
+    overlay.classList.add('hidden');
+    document.body.style.overflow = '';
+  } else {
+    sidebar.classList.remove('translate-x-full');
+    overlay.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+// ==================== MOBILE MENU ====================
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobileMenu');
+  menu.classList.toggle('hidden');
+}
+
+// ==================== CHECKOUT ====================
+function updateCheckout() {
+  const subtotal = cart.reduce((s,c)=>s+c.price*c.qty,0);
+  const district = document.getElementById('checkDistrict')?.value;
+  const delivery = district==='dhaka'?60:district==='outside'?120:0;
+  const total = subtotal + delivery;
+  
+  const bengaliNums = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+  const toBn = n => String(n).split('').map(d=>bengaliNums[d]||d).join('');
+  
+  document.getElementById('checkoutItems').innerHTML = cart.map(c=>`
+    <div class="flex gap-2 text-sm">
+      <img src="https://picsum.photos/seed/${c.img}/50/50.jpg" class="w-10 h-10 rounded-lg object-cover shrink-0">
+      <div class="flex-1 min-w-0"><p class="truncate text-xs">${c.name}</p><p class="text-xs text-navy-400">${c.qty} × ৳${c.price}</p></div>
+      <span class="font-medium text-xs">৳${(c.price*c.qty).toLocaleString()}</span>
+    </div>`).join('');
+  document.getElementById('checkSubtotal').textContent = '৳'+subtotal.toLocaleString();
+  document.getElementById('checkDelivery').textContent = delivery?'৳'+delivery:'নির্বাচন করুন';
+  document.getElementById('checkTotal').textContent = '৳'+total.toLocaleString();
+}
+
+function updateDelivery() {
+  updateCheckout();
+}
+
+function confirmOrder() {
+  const name = document.getElementById('checkName').value.trim();
+  const phone = document.getElementById('checkPhone').value.trim();
+  const address = document.getElementById('checkAddress').value.trim();
+  const district = document.getElementById('checkDistrict').value;
+  
+  if(!name) { showToast('আপনার নাম লিখুন','error'); return; }
+  if(!phone) { showToast('মোবাইল নম্বর লিখুন','error'); return; }
+  if(!address) { showToast('ঠিকানা লিখুন','error'); return; }
+  if(!district) { showToast('জেলা নির্বাচন করুন','error'); return; }
+  if(cart.length===0) { showToast('কার্টে পণ্য যোগ করুন','error'); return; }
+  
+  const orderId = 'GB-' + String(Math.floor(10000+Math.random()*90000));
+  document.getElementById('successOrderId').textContent = orderId;
+  cart = [];
+  updateCartUI();
+  showPage('success');
+}
+
+// ==================== TABS ====================
+function switchTab(tab) {
+  document.querySelectorAll('.tab-content').forEach(el=>el.classList.add('hidden'));
+  document.getElementById('tab-'+tab).classList.remove('hidden');
+  document.querySelectorAll('.tab-btn').forEach(btn=>{
+    btn.classList.remove('border-brand-600','text-brand-700');
+    btn.classList.add('border-transparent','text-navy-400');
+  });
+  document.querySelector(`.tab-btn[data-tab="${tab}"]`).classList.remove('border-transparent','text-navy-400');
+  document.querySelector(`.tab-btn[data-tab="${tab}"]`).classList.add('border-brand-600','text-brand-700');
+}
+
+// ==================== IMAGE ZOOM ====================
+function zoomImage(img) {
+  document.getElementById('zoomImg').src = img.src;
+  document.getElementById('zoomModal').classList.remove('hidden');
+}
+
+// ==================== TOAST ====================
+function showToast(msg, type='success') {
+  const container = document.getElementById('toastContainer');
+  const toast = document.createElement('div');
+  const bgColor = type==='success'?'bg-brand-600':'bg-terra-500';
+  const icon = type==='success'?'lucide:check-circle':'lucide:alert-circle';
+  toast.className = `toast ${bgColor} text-white px-4 py-3 rounded-xl shadow-xl text-sm flex items-center gap-2 min-w-[250px]`;
+  toast.innerHTML = `<iconify-icon icon="${icon}" width="18"></iconify-icon> ${msg}`;
+  container.appendChild(toast);
+  setTimeout(()=>{ toast.style.opacity='0'; toast.style.transition='opacity 0.3s'; setTimeout(()=>toast.remove(),300); }, 3000);
+}
+
+// ==================== HEADER SCROLL ====================
+window.addEventListener('scroll', () => {
+  const h = document.getElementById('mainHeader');
+  if(window.scrollY > 10) h.classList.add('shadow-md');
+  else h.classList.remove('shadow-md');
+});
+
+// ==================== INIT ====================
+renderHomeProducts();
+renderShopProducts();
+</script>
+</body>
+</html>
